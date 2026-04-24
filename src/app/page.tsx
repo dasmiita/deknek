@@ -6,14 +6,14 @@ import ContactForm from "@/components/ContactForm";
 
 export default function HomePage() {
   return (
-    <>
+    <main style={{ position: "relative" }}>
       <Navbar />
       <Hero />
       <Skills />
       <Projects />
-      <section id="contact" style={{ padding: "6rem 2rem", maxWidth: "600px", margin: "0 auto" }}>
+      <div style={{ padding: "0 2rem 6rem" }}>
         <ContactForm />
-      </section>
-    </>
+      </div>
+    </main>
   );
 }

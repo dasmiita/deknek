@@ -13,48 +13,96 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) { setStatus("success"); setForm({ name: "", email: "", message: "" }); }
-      else setStatus("error");
-    } catch { setStatus("error"); }
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputStyle = {
-    width: "100%", background: "rgba(255,255,255,0.05)",
-    border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px",
-    padding: "0.8rem 1rem", color: "#e2e8f0", fontSize: "0.95rem",
-    outline: "none", boxSizing: "border-box" as const
+    width: "100%",
+    background: "rgba(255,255,255,0.82)",
+    border: "1px solid var(--border)",
+    borderRadius: "18px",
+    padding: "0.9rem 1rem",
+    color: "var(--text)",
+    fontSize: "0.95rem",
+    outline: "none",
+    boxSizing: "border-box" as const,
   };
 
   return (
-    <section id="contact" style={{
-      padding: "6rem 2rem", maxWidth: "600px", margin: "0 auto"
-    }}>
-      <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-        <h2 style={{ fontSize: "2.5rem", fontWeight: 800, letterSpacing: "-1px" }}>
-          Get in <span style={{ color: "#7c3aed" }}>Touch</span>
-        </h2>
-        <p style={{ color: "#64748b", marginTop: "0.5rem" }}>Have a project in mind? Let's talk.</p>
-      </div>
+    <section id="contact" style={{ padding: "6rem 2rem", maxWidth: "600px", margin: "0 auto" }}>
+      <div
+        style={{
+          background: "linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,245,230,0.96) 100%)",
+          border: "1px solid var(--border)",
+          borderRadius: "32px",
+          padding: "2rem",
+          boxShadow: "var(--shadow)",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 800, letterSpacing: "-1px" }}>
+            Get in <span style={{ color: "var(--accent)" }}>Touch</span>
+          </h2>
+          <p style={{ color: "var(--text-muted)", marginTop: "0.5rem" }}>
+            Have a project in mind? Let&apos;s talk.
+          </p>
+        </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        <input style={inputStyle} placeholder="Your name" value={form.name}
-          onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-        <input style={inputStyle} placeholder="Your email" type="email" value={form.email}
-          onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
-        <textarea style={{ ...inputStyle, minHeight: "140px", resize: "vertical" }}
-          placeholder="Your message" value={form.message}
-          onChange={e => setForm(f => ({ ...f, message: e.target.value }))} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <input
+            style={inputStyle}
+            placeholder="Your name"
+            value={form.name}
+            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+          />
+          <input
+            style={inputStyle}
+            placeholder="Your email"
+            type="email"
+            value={form.email}
+            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+          />
+          <textarea
+            style={{ ...inputStyle, minHeight: "140px", resize: "vertical" }}
+            placeholder="Your message"
+            value={form.message}
+            onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+          />
 
-        <button onClick={handleSubmit} disabled={status === "loading"} style={{
-          background: "#7c3aed", color: "#fff", border: "none",
-          padding: "0.9rem", borderRadius: "8px", fontSize: "1rem",
-          fontWeight: 600, cursor: "pointer", opacity: status === "loading" ? 0.7 : 1
-        }}>
-          {status === "loading" ? "Sending..." : "Send Message"}
-        </button>
+          <button
+            onClick={handleSubmit}
+            disabled={status === "loading"}
+            style={{
+              background: "var(--accent)",
+              color: "#fff",
+              border: "none",
+              padding: "0.95rem",
+              borderRadius: "999px",
+              fontSize: "1rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              opacity: status === "loading" ? 0.7 : 1,
+              boxShadow: "0 16px 30px rgba(230, 118, 79, 0.22)",
+            }}
+          >
+            {status === "loading" ? "Sending..." : "Send Message"}
+          </button>
 
-        {status === "success" && <p style={{ color: "#4ade80", textAlign: "center" }}>Message sent successfully!</p>}
-        {status === "error" && <p style={{ color: "#f87171", textAlign: "center" }}>Something went wrong. Try again.</p>}
+          {status === "success" && (
+            <p style={{ color: "#3d8c69", textAlign: "center" }}>Message sent successfully!</p>
+          )}
+          {status === "error" && (
+            <p style={{ color: "#c8564f", textAlign: "center" }}>Something went wrong. Try again.</p>
+          )}
+        </div>
       </div>
     </section>
   );

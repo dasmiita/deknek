@@ -31,10 +31,10 @@ export default function LoginPage() {
   const inputStyle = {
     width: "100%",
     background: "rgba(255,255,255,0.86)",
-    border: "1px solid var(--border)",
+    border: "1px solid rgba(0,0,0,0.1)",
     borderRadius: "18px",
     padding: "0.9rem 1rem",
-    color: "var(--text)",
+    color: "#333",
     fontSize: "0.95rem",
     outline: "none",
     boxSizing: "border-box" as const,
@@ -56,10 +56,10 @@ export default function LoginPage() {
           width: "100%",
           maxWidth: "420px",
           background: "linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,247,235,0.96) 100%)",
-          border: "1px solid var(--border)",
+          border: "1px solid rgba(0,0,0,0.1)",
           borderRadius: "28px",
           padding: "2.5rem",
-          boxShadow: "var(--shadow)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
@@ -68,13 +68,13 @@ export default function LoginPage() {
             style={{
               fontSize: "1.6rem",
               fontWeight: 800,
-              color: "var(--accent)",
+              color: "#7c3aed",
               textDecoration: "none",
             }}
           >
-            deknek<span style={{ color: "var(--text)" }}>3d</span>
+            deknek<span style={{ color: "#333" }}>3d</span>
           </Link>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.5rem" }}>
+          <p style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
             Welcome back
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function LoginPage() {
             disabled={loading}
             style={{
               marginTop: "0.5rem",
-              background: loading ? "rgba(230, 118, 79, 0.58)" : "var(--accent)",
+              background: loading ? "rgba(230, 118, 79, 0.58)" : "#7c3aed",
               color: "#fff",
               border: "none",
               padding: "0.95rem",
@@ -160,14 +160,14 @@ export default function LoginPage() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", margin: "1.5rem 0" }}>
-          <div style={{ flex: 1, height: "1px", background: "var(--border)" }} />
-          <span style={{ color: "var(--text-soft)", fontSize: "0.8rem" }}>or</span>
-          <div style={{ flex: 1, height: "1px", background: "var(--border)" }} />
+          <div style={{ flex: 1, height: "1px", background: "rgba(0,0,0,0.1)" }} />
+          <span style={{ color: "#999", fontSize: "0.8rem" }}>or</span>
+          <div style={{ flex: 1, height: "1px", background: "rgba(0,0,0,0.1)" }} />
         </div>
 
-        <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: "0.9rem" }}>
+        <p style={{ textAlign: "center", color: "#666", fontSize: "0.9rem" }}>
           Don&apos;t have an account?{" "}
-          <Link href="/signup" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>
+          <Link href="/signup" style={{ color: "#7c3aed", textDecoration: "none", fontWeight: 600 }}>
             Sign up
           </Link>
         </p>

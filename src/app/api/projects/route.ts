@@ -12,13 +12,21 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.id) {
+  if (!session?.user?.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email }
+  });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
   const body = await req.json();
   const project = await prisma.project.create({
-    data: { ...body, userId: session.user.id },
+    data: { ...body, userId: user.id },
   });
 
   return NextResponse.json(project, { status: 201 });

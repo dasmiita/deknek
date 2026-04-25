@@ -11,6 +11,7 @@ export default function SignupPage() {
 
   const handleSubmit = async () => {
     setError("");
+    console.log("Form data:", form);
 
     if (!form.name || !form.email || !form.password) {
       setError("All fields are required");
@@ -30,6 +31,7 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
+      console.log("Sending request to /api/register");
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,7 +42,9 @@ export default function SignupPage() {
         }),
       });
 
+      console.log("Response status:", res.status);
       const data = await res.json();
+      console.log("Response data:", data);
 
       if (!res.ok) {
         setError(data.error || "Something went wrong");
@@ -49,7 +53,8 @@ export default function SignupPage() {
       }
 
       router.push("/login?registered=true");
-    } catch {
+    } catch (error) {
+      console.error("Signup error:", error);
       setError("Server error. Please try again.");
       setLoading(false);
     }

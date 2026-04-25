@@ -2,11 +2,12 @@
   "name": "deknek3d",
   "version": "0.1.0",
   "private": true,
- "scripts": {
+"scripts": {
   "dev": "next dev --turbopack",
   "build": "prisma generate && next build",
   "start": "next start",
-  "lint": "next lint"
+  "lint": "next lint",
+  "postinstall": "prisma generate"
 },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
